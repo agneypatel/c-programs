@@ -1,0 +1,3255 @@
+# Essential Collection of C Programs
+# Author : Agney Patel
+# Web : https://www.agneypatel.com/blog
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to check whether input alphabet is a vowel or not
+
+This code checks whether an input alphabet is a vowel or not. Both lower-case and upper-case are checked.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+  char ch;
+ 
+  printf("Enter a character\n");
+  scanf("%c", &ch);
+ 
+  if (ch == 'a' || ch == 'A' || ch == 'e' || ch == 'E' || ch == 'i' || ch == 'I' || ch =='o' || ch=='O' || ch == 'u' || ch == 'U')
+    printf("%c is a vowel.\n", ch);
+  else
+    printf("%c is not a vowel.\n", ch);
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to check leap year
+
+C program to check leap year: c code to check leap year, year will be entered by the user.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+  int year;
+ 
+  printf("Enter a year to check if it is a leap year\n");
+  scanf("%d", &year);
+ 
+  if ( year%400 == 0)
+    printf("%d is a leap year.\n", year);
+  else if ( year%100 == 0)
+    printf("%d is not a leap year.\n", year);
+  else if ( year%4 == 0 )
+    printf("%d is a leap year.\n", year);
+  else
+    printf("%d is not a leap year.\n", year);  
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Add digits of number in c
+
+C program to add digits of a number: Here we are using modulus operator(%) to extract individual digits of number and adding them.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int n, t, sum = 0, remainder;
+ 
+   printf("Enter an integer\n");
+   scanf("%d", &n);
+ 
+   t = n;
+ 
+   while (t != 0)
+   {
+      remainder = t % 10;
+      sum       = sum + remainder;
+      t         = t / 10;
+   }
+ 
+   printf("Sum of digits of %d = %d\n", n, sum);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Factorial program in c
+
+Factorial program in c: c code to find and print factorial of a number, three methods are given, first one uses for loop, second uses a function to find factorial and third using recursion. Factorial is represented using '!', so five factorial will be written as (5!), n factorial as (n!). Also
+n! = n*(n-1)*(n-2)*(n-3)...3.2.1 and zero factorial is defined as one i.e. 0! = 1.
+
+Factorial program in c using for loop
+Here we find factorial using for loop.
+
+#include <stdio.h>
+ 
+int main()
+{
+  int c, n, fact = 1;
+ 
+  printf("Enter a number to calculate it's factorial\n");
+  scanf("%d", &n);
+ 
+  for (c = 1; c <= n; c++)
+    fact = fact * c;
+ 
+  printf("Factorial of %d = %d\n", n, fact);
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to find hcf and lcm
+
+C program to find hcf and lcm: The code below finds highest common factor and least common multiple of two integers. HCF is also known as greatest common divisor(GCD) or greatest common factor(gcf).
+
+C programming code
+#include <stdio.h>
+ 
+int main() {
+  int a, b, x, y, t, gcd, lcm;
+ 
+  printf("Enter two integers\n");
+  scanf("%d%d", &x, &y);
+ 
+  a = x;
+  b = y;
+ 
+  while (b != 0) {
+    t = b;
+    b = a % b;
+    a = t;
+  }
+ 
+  gcd = a;
+  lcm = (x*y)/gcd;
+ 
+  printf("Greatest common divisor of %d and %d = %d\n", x, y, gcd);
+  printf("Least common multiple of %d and %d = %d\n", x, y, lcm);
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Decimal to binary conversion
+
+C program to convert decimal to binary: c language code to convert an integer from decimal number system(base-10) to binary number system(base-2). Size of integer is assumed to be 32 bits. We use bitwise operators to perform the desired task. We right shift the original number by 31, 30, 29, ..., 1, 0 bits using a loop and bitwise AND the number obtained with 1(one), if the result is 1 then that bit is 1 otherwise it is 0(zero).
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+  int n, c, k;
+ 
+  printf("Enter an integer in decimal number system\n");
+  scanf("%d", &n);
+ 
+  printf("%d in binary number system is:\n", n);
+ 
+  for (c = 31; c >= 0; c--)
+  {
+    k = n >> c;
+ 
+    if (k & 1)
+      printf("1");
+    else
+      printf("0");
+  }
+ 
+  printf("\n");
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to find ncr and npr
+
+C program to find nCr and nPr: This code calculate nCr which is n!/(r!*(n-r)!) and nPr = n!/(n-r)!
+
+C program to find nCr using function
+#include <stdio.h>
+ 
+long factorial(int);
+long find_ncr(int, int);
+long find_npr(int, int);
+ 
+int main()
+{
+   int n, r;
+   long ncr, npr;
+ 
+   printf("Enter the value of n and r\n");
+   scanf("%d%d",&n,&r);
+ 
+   ncr = find_ncr(n, r);
+   npr = find_npr(n, r);
+ 
+   printf("%dC%d = %ld\n", n, r, ncr);
+   printf("%dP%d = %ld\n", n, r, npr);
+ 
+   return 0;
+}
+ 
+long find_ncr(int n, int r) {
+   long result;
+ 
+   result = factorial(n)/(factorial(r)*factorial(n-r));
+ 
+   return result;
+}
+ 
+long find_npr(int n, int r) {
+   long result;
+ 
+   result = factorial(n)/factorial(n-r);
+ 
+   return result;
+} 
+ 
+long factorial(int n) {
+   int c;
+   long result = 1;
+ 
+   for (c = 1; c <= n; c++)
+      result = result*c;
+ 
+   return result;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to add n numbers
+
+This c program add n numbers which will be entered by the user. Firstly user will enter a number indicating how many numbers user wishes to add and then user will enter n numbers. In the first c program to add numbers we are not using an array, and using array in the second code.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int n, sum = 0, c, value;
+ 
+   printf("Enter the number of integers you want to add\n");
+   scanf("%d", &n);
+ 
+   printf("Enter %d integers\n",n);
+ 
+   for (c = 1; c <= n; c++)
+   {
+      scanf("%d", &value);
+      sum = sum + value;
+   }
+ 
+   printf("Sum of entered integers = %d\n",sum);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to swap two numbers
+
+C program to swap two numbers with and without using third variable, swapping in c using pointers, functions (Call by reference) and using bitwise XOR operator, swapping means interchanging. For example if in your c program you have taken two variable a and b where a = 4 and b = 5, then before swapping a = 4, b = 5 after swapping a = 5, b = 4
+In our c program to swap numbers we will use a temp variable to swap two numbers.
+
+Swapping of two numbers in c
+#include <stdio.h>
+ 
+int main()
+{
+   int x, y, temp;
+ 
+   printf("Enter the value of x and y\n");
+   scanf("%d%d", &x, &y);
+ 
+   printf("Before Swapping\nx = %d\ny = %d\n",x,y);
+ 
+   temp = x;
+   x    = y;
+   y    = temp;
+ 
+   printf("After Swapping\nx = %d\ny = %d\n",x,y);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to reverse a number
+
+C Program to reverse a number :- This program reverse the number entered by the user and then prints the reversed number on the screen. For example if user enter 123 as input then 321 is printed as output. In our program we use modulus(%) operator to obtain the digits of a number. To invert number look at it and write it from opposite direction or the output of code is a number obtained by writing original number from right to left. To reverse or invert large numbers use long data type or long long data type if your compiler supports it, if you still have large numbers then use strings or other data structure.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int n, reverse = 0;
+ 
+   printf("Enter a number to reverse\n");
+   scanf("%d", &n);
+ 
+   while (n != 0)
+   {
+      reverse = reverse * 10;
+      reverse = reverse + n%10;
+      n       = n/10;
+   }
+ 
+   printf("Reverse of entered number is = %d\n", reverse);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Palindrome Numbers
+
+Palindrome number in c: A palindrome number is a number such that if we reverse it, it will not change. For example some palindrome numbers examples are 121, 212, 12321, -454. To check whether a number is palindrome or not first we reverse it and then compare the number obtained with the original, if both are same then number is palindrome otherwise not. C program for palindrome number is given below.
+
+Palindrome number algorithm
+1. Get the number from user.
+2. Reverse it.
+3. Compare it with the number entered by the user.
+4. If both are same then print palindrome number
+5. Else print not a palindrome number.
+
+Palindrome number program c
+#include <stdio.h>
+ 
+int main()
+{
+   int n, reverse = 0, temp;
+ 
+   printf("Enter a number to check if it is a palindrome or not\n");
+   scanf("%d",&n);
+ 
+   temp = n;
+ 
+   while( temp != 0 )
+   {
+      reverse = reverse * 10;
+      reverse = reverse + temp%10;
+      temp = temp/10;
+   }
+ 
+   if ( n == reverse )
+      printf("%d is a palindrome number.\n", n);
+   else
+      printf("%d is not a palindrome number.\n", n);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to print patterns of numbers and stars
+
+These program prints various different patterns of numbers and stars. These codes illustrate how to create various patterns using c programming. Most of these c programs involve usage of nested loops and space. A pattern of numbers, star or characters is a way of arranging these in some logical manner or they may form a sequence. Some of these patterns are triangles which have special importance in mathematics. Some patterns are symmetrical while other are not. Please see the complete page and look at comments for many different patterns.
+
+    *
+   ***
+  *****
+ *******
+*********
+We have shown five rows above, in the program you will be asked to enter the numbers of rows you want to print in the pyramid of stars.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int row, c, n, temp;
+ 
+   printf("Enter the number of rows in pyramid of stars you wish to see ");
+   scanf("%d",&n);
+ 
+   temp = n;
+ 
+   for ( row = 1 ; row <= n ; row++ )
+   {
+      for ( c = 1 ; c < temp ; c++ )
+         printf(" ");
+ 
+      temp--;
+ 
+      for ( c = 1 ; c <= 2*row - 1 ; c++ )
+         printf("*");
+ 
+      printf("\n");
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to print diamond pattern
+
+Diamond pattern in c: This code print diamond pattern of stars. Diamond shape is as follows:
+
+  *
+ ***
+*****
+ ***
+  *
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+  int n, c, k, space = 1;
+ 
+  printf("Enter number of rows\n");
+  scanf("%d", &n);
+ 
+  space = n - 1;
+ 
+  for (k = 1; k <= n; k++)
+  {
+    for (c = 1; c <= space; c++)
+      printf(" ");
+ 
+    space--;
+ 
+    for (c = 1; c <= 2*k-1; c++)
+      printf("*");
+ 
+    printf("\n");
+  }
+ 
+  space = 1;
+ 
+  for (k = 1; k <= n - 1; k++)
+  {
+    for (c = 1; c <= space; c++)
+      printf(" ");
+ 
+    space++;
+ 
+    for (c = 1 ; c <= 2*(n-k)-1; c++)
+      printf("*");
+ 
+    printf("\n");
+  }
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program for prime number
+
+Prime number program in c: c program for prime number, this code prints prime numbers using c programming language. To check whether a number is prime or not see another code below. Prime number logic: a number is prime if it is divisible only by one and itself. Remember two is the only even and also the smallest prime number. First few prime numbers are 2, 3, 5, 7, 11, 13, 17....etc. Prime numbers have many applications in computer science and mathematics. A number greater than one can be factorized into prime numbers, For example 540 = 22*33*51
+Prime number program in c language
+#include<stdio.h>
+ 
+int main()
+{
+   int n, i = 3, count, c;
+ 
+   printf("Enter the number of prime numbers required\n");
+   scanf("%d",&n);
+ 
+   if ( n >= 1 )
+   {
+      printf("First %d prime numbers are :\n",n);
+      printf("2\n");
+   }
+ 
+   for ( count = 2 ; count <= n ;  )
+   {
+      for ( c = 2 ; c <= i - 1 ; c++ )
+      {
+         if ( i%c == 0 )
+            break;
+      }
+      if ( c == i )
+      {
+         printf("%d\n",i);
+         count++;
+      }
+      i++;
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Armstrong number c program
+
+Armstrong number c program: c programming code to check whether a number is Armstrong or not. Armstrong number is a number which is equal to sum of digits raise to the power total number of digits in the number. Some Armstrong numbers are: 0, 1, 2, 3, 153, 370, 407, 1634, 8208 etc. Read more about Armstrong numbers at Wikipedia. We will consider base 10 numbers in our program. Algorithm to check Armstrong is: First we calculate number of digits in our program and then compute sum of individual digits raise to the power number of digits. If this sum equals input number then number is Armstrong otherwise not an Armstrong number.
+
+Examples:
+7 = 7^1
+371 = 3^3 + 7^3 + 1^3 (27 + 343 +1)
+8208 = 8^4 + 2^4 +0^4 + 8^4 (4096 + 16 + 0 + 4096).
+1741725 = 1^7 + 7^7 + 4^7 + 1^7 + 7^7 + 2^7 +5^7 (1 + 823543 + 16384 + 1 + 823543 +128 + 78125)
+
+C programming code
+#include <stdio.h>
+ 
+int power(int, int);
+ 
+int main()
+{
+   int n, sum = 0, temp, remainder, digits = 0;
+ 
+   printf("Input an integer\n");
+   scanf("%d", &n);
+ 
+   temp = n;
+   // Count number of digits
+   while (temp != 0) {
+      digits++;
+      temp = temp/10;
+   }
+ 
+   temp = n;
+ 
+   while (temp != 0) {
+      remainder = temp%10;
+      sum = sum + power(remainder, digits);
+      temp = temp/10;
+   }
+ 
+   if (n == sum)
+      printf("%d is an Armstrong number.\n", n);
+   else
+      printf("%d is not an Armstrong number.\n", n);
+ 
+   return 0;
+}
+ 
+int power(int n, int r) {
+   int c, p = 1;
+ 
+   for (c = 1; c <= r; c++) 
+      p = p*n;
+ 
+   return p;   
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to generate and print armstrong numbers
+
+C program to generate Armstrong numbers. In our program user will input two integers and we will print all Armstrong numbers between two integers. Using a for loop we will check numbers in the desired range. In our loop we call our function check_armstrong which returns 1 if number is Armstrong and 0 otherwise. If you are not familiar with Armstrong numbers see Check Armstrong number program.
+
+C programming code
+#include <stdio.h>
+ 
+int check_armstrong(int);
+int power(int, int);
+ 
+int main () {
+   int c, a, b;
+ 
+   printf("Input two integers\n");
+   scanf("%d%d", &a, &b);
+ 
+   for (c = a; c <= b; c++) {
+      if (check_armstrong(c) == 1)
+         printf("%d\n", c);
+   }
+ 
+   return 0;
+}
+ 
+int check_armstrong(int n) {
+   long long sum = 0, temp;
+   int remainder, digits = 0;
+ 
+   temp = n;
+ 
+   while (temp != 0) {
+      digits++;
+      temp = temp/10;
+   }
+ 
+   temp = n;
+ 
+   while (temp != 0) {
+      remainder = temp%10;
+      sum = sum + power(remainder, digits);
+      temp = temp/10;
+   }
+ 
+   if (n == sum)
+      return 1;
+   else
+      return 0;
+}
+ 
+int  power(int n, int r) {
+   int c, p = 1;
+ 
+   for (c = 1; c <= r; c++) 
+      p = p*n;
+ 
+   return p;   
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Fibonacci series in c
+
+Fibonacci series in c programming: c program for Fibonacci series without and with recursion. Using the code below you can print as many numbers of terms of series as desired. Numbers of Fibonacci sequence are known as Fibonacci numbers. First few numbers of series are 0, 1, 1, 2, 3, 5, 8 etc, Except first two terms in sequence every other term is the sum of two previous terms, For example 8 = 3 + 5 (addition of 3, 5). This sequence has many applications in mathematics and Computer Science.
+
+Fibonacci series in c using for loop
+/* Fibonacci Series c language */
+#include<stdio.h>
+ 
+int main()
+{
+   int n, first = 0, second = 1, next, c;
+ 
+   printf("Enter the number of terms\n");
+   scanf("%d",&n);
+ 
+   printf("First %d terms of Fibonacci series are :-\n",n);
+ 
+   for ( c = 0 ; c < n ; c++ )
+   {
+      if ( c <= 1 )
+         next = c;
+      else
+      {
+         next = first + second;
+         first = second;
+         second = next;
+      }
+      printf("%d\n",next);
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to print Floyd's triangle
+
+C program to print Floyd's triangle:- This program prints Floyd's triangle. Number of rows of Floyd's triangle to print is entered by the user. First four rows of Floyd's triangle are as follows :-
+1
+2 3
+4 5 6
+7 8 9 10
+It's clear that in Floyd's triangle nth row contains n numbers.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+  int n, i,  c, a = 1;
+ 
+  printf("Enter the number of rows of Floyd's triangle to print\n");
+  scanf("%d", &n);
+ 
+  for (i = 1; i <= n; i++)
+  {
+    for (c = 1; c <= i; c++)
+    {
+      printf("%d ",a);
+      a++;
+    }
+    printf("\n");
+  }
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to print Pascal triangle
+
+Pascal Triangle in c: C program to print Pascal triangle which you might have studied in Binomial Theorem in Mathematics. Number of rows of Pascal triangle to print is entered by the user. First four rows of Pascal triangle are shown below :-
+
+   1
+  1 1
+ 1 2 1
+1 3 3 1
+Pascal triangle in c
+#include <stdio.h>
+ 
+long factorial(int);
+ 
+int main()
+{
+   int i, n, c;
+ 
+   printf("Enter the number of rows you wish to see in pascal triangle\n");
+   scanf("%d",&n);
+ 
+   for (i = 0; i < n; i++)
+   {
+      for (c = 0; c <= (n - i - 2); c++)
+         printf(" ");
+ 
+      for (c = 0 ; c <= i; c++)
+         printf("%ld ",factorial(i)/(factorial(c)*factorial(i-c)));
+ 
+      printf("\n");
+   }
+ 
+   return 0;
+}
+ 
+long factorial(int n)
+{
+   int c;
+   long result = 1;
+ 
+   for (c = 1; c <= n; c++)
+         result = result*c;
+ 
+   return result;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to add two numbers using pointers
+
+This program performs addition of two numbers using pointers. In our program we have two two integer variables x, y and two pointer variables p and q. Firstly we assign the addresses of x and y to p and q respectively and then assign the sum of x and y to variable sum. Note that & is address of operator and * is value at address operator.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int first, second, *p, *q, sum;
+ 
+   printf("Enter two integers to add\n");
+   scanf("%d%d", &first, &second);
+ 
+   p = &first;
+   q = &second;
+ 
+   sum = *p + *q;
+ 
+   printf("Sum of entered numbers = %d\n",sum);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to find maximum element in array
+
+This code find maximum or largest element present in an array. It also prints the location or index at which maximum element occurs in array. This can also be done by using pointers (see both codes). The algorithm to find maximum is first we assume that maximum element occurs at beginning of array and stores that value in a variable. Then we compare it with other array elements one by one, if any element is greater than our assumed maximum then maximum value and index at which it occurs is updated. Similarly we can find minimum element in an array.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+  int array[100], maximum, size, c, location = 1;
+ 
+  printf("Enter the number of elements in array\n");
+  scanf("%d", &size);
+ 
+  printf("Enter %d integers\n", size);
+ 
+  for (c = 0; c < size; c++)
+    scanf("%d", &array[c]);
+ 
+  maximum = array[0];
+ 
+  for (c = 1; c < size; c++)
+  {
+    if (array[c] > maximum)
+    {
+       maximum  = array[c];
+       location = c+1;
+    }
+  }
+ 
+  printf("Maximum element is present at location %d and it's value is %d.\n", location, maximum);
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to find minimum element in array
+
+C code to find minimum or smallest element present in an array. It also prints the location or index at which minimum element occurs in array. This can also be done by using pointers (see both the codes). Our algorithm first assumes first element as minimum and then compare it with other elements if an element is smaller than it then it becomes the new minimum and this process is repeated till complete array is scanned.
+
+C programming code
+#include <stdio.h>
+ 
+int main() 
+{
+    int array[100], minimum, size, c, location = 1;
+ 
+    printf("Enter the number of elements in array\n");
+    scanf("%d",&size);
+ 
+    printf("Enter %d integers\n", size);
+ 
+    for ( c = 0 ; c < size ; c++ )
+        scanf("%d", &array[c]);
+ 
+    minimum = array[0];
+ 
+    for ( c = 1 ; c < size ; c++ ) 
+    {
+        if ( array[c] < minimum ) 
+        {
+           minimum = array[c];
+           location = c+1;
+        }
+    } 
+ 
+    printf("Minimum element is present at location %d and it's value is %d.\n", location, minimum);
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Linear search in c
+
+Linear search in c programming: The following code implements linear search (Searching algorithm) which is used to find whether a given number is present in an array and if it is present then at what location it occurs. It is also known as sequential search. It is very simple and works as follows: We keep on comparing each element with the element to search until the desired element is found or list ends. Linear search in c language for multiple occurrences and using function.
+
+Linear search c program
+#include <stdio.h>
+ 
+int main()
+{
+   int array[100], search, c, n;
+ 
+   printf("Enter the number of elements in array\n");
+   scanf("%d",&n);
+ 
+   printf("Enter %d integer(s)\n", n);
+ 
+   for (c = 0; c < n; c++)
+      scanf("%d", &array[c]);
+ 
+   printf("Enter the number to search\n");
+   scanf("%d", &search);
+ 
+   for (c = 0; c < n; c++)
+   {
+      if (array[c] == search)     /* if required element found */
+      {
+         printf("%d is present at location %d.\n", search, c+1);
+         break;
+      }
+   }
+   if (c == n)
+      printf("%d is not present in array.\n", search);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program for binary search
+
+C program for binary search: This code implements binary search in c language. It can only be used for sorted arrays, but it's fast as compared to linear search. If you wish to use binary search on an array which is not sorted then you must sort it using some sorting technique say merge sort and then use binary search algorithm to find the desired element in the list. If the element to be searched is found then its position is printed.
+
+The code below assumes that the input numbers are in ascending order.
+C programming code for binary search
+#include <stdio.h>
+ 
+int main()
+{
+   int c, first, last, middle, n, search, array[100];
+ 
+   printf("Enter number of elements\n");
+   scanf("%d",&n);
+ 
+   printf("Enter %d integers\n", n);
+ 
+   for (c = 0; c < n; c++)
+      scanf("%d",&array[c]);
+ 
+   printf("Enter value to find\n");
+   scanf("%d", &search);
+ 
+   first = 0;
+   last = n - 1;
+   middle = (first+last)/2;
+ 
+   while (first <= last) {
+      if (array[middle] < search)
+         first = middle + 1;    
+      else if (array[middle] == search) {
+         printf("%d found at location %d.\n", search, middle+1);
+         break;
+      }
+      else
+         last = middle - 1;
+ 
+      middle = (first + last)/2;
+   }
+   if (first > last)
+      printf("Not found! %d is not present in the list.\n", search);
+ 
+   return 0;   
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to reverse an array
+
+C program to reverse an array: This program reverses the array elements. For example if a is an array of integers with three elements such that
+a[0] = 1
+a[1] = 2
+a[2] = 3
+Then on reversing the array will be
+a[0] = 3
+a[1] = 2
+a[0] = 1
+
+Given below is the c code to reverse an array.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int n, c, d, a[100], b[100];
+ 
+   printf("Enter the number of elements in array\n");
+   scanf("%d", &n);
+ 
+   printf("Enter the array elements\n");
+ 
+   for (c = 0; c < n ; c++)
+      scanf("%d", &a[c]);
+ 
+   /*
+    * Copying elements into array b starting from end of array a
+    */
+ 
+   for (c = n - 1, d = 0; c >= 0; c--, d++)
+      b[d] = a[c];
+ 
+   /*
+    * Copying reversed array into original.
+    * Here we are modifying original array, this is optional.
+    */
+ 
+   for (c = 0; c < n; c++)
+      a[c] = b[c];
+ 
+   printf("Reverse array is\n");
+ 
+   for (c = 0; c < n; c++)
+      printf("%d\n", a[c]);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to insert an element in an array
+
+This code will insert an element into an array, For example consider an array a[10] having three elements in it initially and a[0] = 1, a[1] = 2 and a[2] = 3 and you want to insert a number 45 at location 1 i.e. a[0] = 45, so we have to move elements one step below so after insertion a[1] = 1 which was a[0] initially, and a[2] = 2 and a[3] = 3. Array insertion does not mean increasing its size i.e array will not be containing 11 elements.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int array[100], position, c, n, value;
+ 
+   printf("Enter number of elements in array\n");
+   scanf("%d", &n);
+ 
+   printf("Enter %d elements\n", n);
+ 
+   for (c = 0; c < n; c++)
+      scanf("%d", &array[c]);
+ 
+   printf("Enter the location where you wish to insert an element\n");
+   scanf("%d", &position);
+ 
+   printf("Enter the value to insert\n");
+   scanf("%d", &value);
+ 
+   for (c = n - 1; c >= position - 1; c--)
+      array[c+1] = array[c];
+ 
+   array[position-1] = value;
+ 
+   printf("Resultant array is\n");
+ 
+   for (c = 0; c <= n; c++)
+      printf("%d\n", array[c]);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to delete an element from an array
+
+This program delete an element from an array. Deleting an element does not affect the size of array. It is also checked whether deletion is possible or not, For example if array is containing five elements and you want to delete element at position six which is not possible.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int array[100], position, c, n;
+ 
+   printf("Enter number of elements in array\n");
+   scanf("%d", &n);
+ 
+   printf("Enter %d elements\n", n);
+ 
+   for ( c = 0 ; c < n ; c++ )
+      scanf("%d", &array[c]);
+ 
+   printf("Enter the location where you wish to delete element\n");
+   scanf("%d", &position);
+ 
+   if ( position >= n+1 )
+      printf("Deletion not possible.\n");
+   else
+   {
+      for ( c = position - 1 ; c < n - 1 ; c++ )
+         array[c] = array[c+1];
+ 
+      printf("Resultant array is\n");
+ 
+      for( c = 0 ; c < n - 1 ; c++ )
+         printf("%d\n", array[c]);
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to merge two arrays
+
+C program to merge two arrays into third array: Arrays are assumed to be sorted in ascending order. You enter two short sorted arrays and combine them to get a large array.
+
+C programming code to merge two sorted arrays
+#include <stdio.h>
+ 
+void merge(int [], int, int [], int, int []);
+ 
+int main() {
+  int a[100], b[100], m, n, c, sorted[200];
+ 
+  printf("Input number of elements in first array\n");
+  scanf("%d", &m);
+ 
+  printf("Input %d integers\n", m);
+  for (c = 0; c < m; c++) {
+    scanf("%d", &a[c]);
+  }
+ 
+  printf("Input number of elements in second array\n");
+  scanf("%d", &n);
+ 
+  printf("Input %d integers\n", n);
+  for (c = 0; c < n; c++) {
+    scanf("%d", &b[c]);
+  }
+ 
+  merge(a, m, b, n, sorted);
+ 
+  printf("Sorted array:\n");
+ 
+  for (c = 0; c < m + n; c++) {
+    printf("%d\n", sorted[c]);
+  }
+ 
+  return 0;
+}
+ 
+void merge(int a[], int m, int b[], int n, int sorted[]) {
+  int i, j, k;
+ 
+  j = k = 0;
+ 
+  for (i = 0; i < m + n;) {
+    if (j < m && k < n) {
+      if (a[j] < b[k]) {
+        sorted[i] = a[j];
+        j++;
+      }
+      else {
+        sorted[i] = b[k];
+        k++;
+      }
+      i++;
+    }
+    else if (j == m) {
+      for (; i < m + n;) {
+        sorted[i] = b[k];
+        k++;
+        i++;
+      }
+    }
+    else {
+      for (; i < m + n;) {
+        sorted[i] = a[j];
+        j++;
+        i++;
+      }
+    }
+  }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program for bubble sort
+
+C program for bubble sort: c programming code for bubble sort to sort numbers or arrange them in ascending order. You can easily modify it to print numbers in descending order.
+
+Bubble sort algorithm in c
+/* Bubble sort code */
+ 
+#include <stdio.h>
+ 
+int main()
+{
+  int array[100], n, c, d, swap;
+ 
+  printf("Enter number of elements\n");
+  scanf("%d", &n);
+ 
+  printf("Enter %d integers\n", n);
+ 
+  for (c = 0; c < n; c++)
+    scanf("%d", &array[c]);
+ 
+  for (c = 0 ; c < ( n - 1 ); c++)
+  {
+    for (d = 0 ; d < n - c - 1; d++)
+    {
+      if (array[d] > array[d+1]) /* For decreasing order use < */
+      {
+        swap       = array[d];
+        array[d]   = array[d+1];
+        array[d+1] = swap;
+      }
+    }
+  }
+ 
+  printf("Sorted list in ascending order:\n");
+ 
+  for ( c = 0 ; c < n ; c++ )
+     printf("%d\n", array[c]);
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Insertion sort in c
+
+Insertion sort in c: c program for insertion sort to sort numbers. This code implements insertion sort algorithm to arrange numbers of an array in ascending order. With a little modification it will arrange numbers in descending order.
+
+Insertion sort algorithm implementation in c
+/* insertion sort ascending order */
+ 
+#include <stdio.h>
+ 
+int main()
+{
+  int n, array[1000], c, d, t;
+ 
+  printf("Enter number of elements\n");
+  scanf("%d", &n);
+ 
+  printf("Enter %d integers\n", n);
+ 
+  for (c = 0; c < n; c++) {
+    scanf("%d", &array[c]);
+  }
+ 
+  for (c = 1 ; c <= n - 1; c++) {
+    d = c;
+ 
+    while ( d > 0 && array[d] < array[d-1]) {
+      t          = array[d];
+      array[d]   = array[d-1];
+      array[d-1] = t;
+ 
+      d--;
+    }
+  }
+ 
+  printf("Sorted list in ascending order:\n");
+ 
+  for (c = 0; c <= n - 1; c++) {
+    printf("%d\n", array[c]);
+  }
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Selection sort in c
+
+Selection sort in c: c program for selection sort to sort numbers. This code implements selection sort algorithm to arrange numbers of an array in ascending order. With a little modification it will arrange numbers in descending order.
+
+Selection sort algorithm implementation in c
+#include <stdio.h>
+ 
+int main()
+{
+   int array[100], n, c, d, position, swap;
+ 
+   printf("Enter number of elements\n");
+   scanf("%d", &n);
+ 
+   printf("Enter %d integers\n", n);
+ 
+   for ( c = 0 ; c < n ; c++ )
+      scanf("%d", &array[c]);
+ 
+   for ( c = 0 ; c < ( n - 1 ) ; c++ )
+   {
+      position = c;
+ 
+      for ( d = c + 1 ; d < n ; d++ )
+      {
+         if ( array[position] > array[d] )
+            position = d;
+      }
+      if ( position != c )
+      {
+         swap = array[c];
+         array[c] = array[position];
+         array[position] = swap;
+      }
+   }
+ 
+   printf("Sorted list in ascending order:\n");
+ 
+   for ( c = 0 ; c < n ; c++ )
+      printf("%d\n", array[c]);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to add two matrix
+
+This c program add two matrices i.e. compute the sum of two matrices and then print it. Firstly user will be asked to enter the order of matrix (number of rows and columns) and then two matrices. For example if the user entered order as 2, 2 i.e. two rows and two columns and matrices as
+First Matrix :-
+1 2
+3 4
+Second matrix :-
+4 5
+-1 5
+then output of the program (sum of First and Second matrix) will be
+5 7
+2 9
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int m, n, c, d, first[10][10], second[10][10], sum[10][10];
+ 
+   printf("Enter the number of rows and columns of matrix\n");
+   scanf("%d%d", &m, &n);
+   printf("Enter the elements of first matrix\n");
+ 
+   for (c = 0; c < m; c++)
+      for (d = 0; d < n; d++)
+         scanf("%d", &first[c][d]);
+ 
+   printf("Enter the elements of second matrix\n");
+ 
+   for (c = 0; c < m; c++)
+      for (d = 0 ; d < n; d++)
+            scanf("%d", &second[c][d]);
+ 
+   printf("Sum of entered matrices:-\n");
+ 
+   for (c = 0; c < m; c++) {
+      for (d = 0 ; d < n; d++) {
+         sum[c][d] = first[c][d] + second[c][d];
+         printf("%d\t", sum[c][d]);
+      }
+      printf("\n");
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Subtract matrices
+
+C code to subtract matrices of any order. This program finds difference between corresponding elements of two matrices and then print the resultant matrix.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int m, n, c, d, first[10][10], second[10][10], difference[10][10];
+ 
+   printf("Enter the number of rows and columns of matrix\n");
+   scanf("%d%d", &m, &n);
+   printf("Enter the elements of first matrix\n");
+ 
+   for (c = 0; c < m; c++)
+     for (d = 0 ; d < n; d++)
+       scanf("%d", &first[c][d]);
+ 
+   printf("Enter the elements of second matrix\n");
+ 
+   for (c = 0; c < m; c++)
+     for (d = 0; d < n; d++)
+         scanf("%d", &second[c][d]);
+ 
+   printf("Difference of entered matrices:-\n");
+ 
+   for (c = 0; c < m; c++) {
+     for (d = 0; d < n; d++) {
+       difference[c][d] = first[c][d] - second[c][d];
+       printf("%d\t",difference[c][d]);
+     } 
+     printf("\n");
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to transpose a matrix
+
+This c program prints transpose of a matrix. It is obtained by interchanging rows and columns of a matrix. For example if a matrix is
+1 2
+3 4
+5 6
+then transpose of above matrix will be
+1 3 5
+2 4 6
+When we transpose a matrix then the order of matrix changes, but for a square matrix order remains same.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   int m, n, c, d, matrix[10][10], transpose[10][10];
+ 
+   printf("Enter the number of rows and columns of matrix\n");
+   scanf("%d%d", &m, &n);
+ 
+   printf("Enter the elements of matrix\n");
+ 
+   for (c = 0; c < m; c++)
+      for(d = 0; d < n; d++)
+         scanf("%d",&matrix[c][d]);
+ 
+   for (c = 0; c < m; c++)
+      for( d = 0 ; d < n ; d++ )
+         transpose[d][c] = matrix[c][d];
+ 
+   printf("Transpose of entered matrix :-\n");
+ 
+   for (c = 0; c < n; c++) {
+      for (d = 0; d < m; d++)
+         printf("%d\t",transpose[c][d]);
+      printf("\n");
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Matrix multiplication in c
+
+Matrix multiplication in c language: c program to multiply matrices (two dimensional array), this program multiplies two matrices which will be entered by the user. Firstly user will enter the order of a matrix. If the entered orders of two matrix is such that they can't be multiplied then an error message is displayed on the screen. You have already studied the logic to multiply them in Mathematics.
+
+Matrix multiplication in c language
+#include <stdio.h>
+ 
+int main()
+{
+  int m, n, p, q, c, d, k, sum = 0;
+  int first[10][10], second[10][10], multiply[10][10];
+ 
+  printf("Enter the number of rows and columns of first matrix\n");
+  scanf("%d%d", &m, &n);
+  printf("Enter the elements of first matrix\n");
+ 
+  for (c = 0; c < m; c++)
+    for (d = 0; d < n; d++)
+      scanf("%d", &first[c][d]);
+ 
+  printf("Enter the number of rows and columns of second matrix\n");
+  scanf("%d%d", &p, &q);
+ 
+  if (n != p)
+    printf("Matrices with entered orders can't be multiplied with each other.\n");
+  else
+  {
+    printf("Enter the elements of second matrix\n");
+ 
+    for (c = 0; c < p; c++)
+      for (d = 0; d < q; d++)
+        scanf("%d", &second[c][d]);
+ 
+    for (c = 0; c < m; c++) {
+      for (d = 0; d < q; d++) {
+        for (k = 0; k < p; k++) {
+          sum = sum + first[c][k]*second[k][d];
+        }
+ 
+        multiply[c][d] = sum;
+        sum = 0;
+      }
+    }
+ 
+    printf("Product of entered matrices:-\n");
+ 
+    for (c = 0; c < m; c++) {
+      for (d = 0; d < q; d++)
+        printf("%d\t", multiply[c][d]);
+ 
+      printf("\n");
+    }
+  }
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program print string
+
+This program print a string. String can be printed by using various functions such as printf, puts.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+    char array[20] = "Hello World";
+ 
+    printf("%s\n",array);
+ 
+    return 0;
+}
+To input a string we use scanf function.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+    char array[100];
+ 
+    printf("Enter a string\n");
+    scanf("%s", array);
+ 
+    printf("You entered the string %s\n",array);
+    return 0;
+}
+Input string containing spaces
+#include <stdio.h>
+ 
+int main()
+{
+   char a[80];
+ 
+   gets(a);
+ 
+   printf("%s\n", a);
+ 
+   return 0;
+}
+Note that scanf can only input single word strings, to receive strings containing spaces use gets function.
+
+C program to print string using recursion
+#include <stdio.h>
+ 
+void print(char*);
+ 
+int main() {
+   char s[100];
+   gets(s);
+   print(s);
+   return 0;
+}
+ 
+void print(char *t) {
+   if (*t == '\0')
+      return;
+   printf("%c", *t);
+   print(++t);
+}
+Print string using loop
+We print string using for loop by printing individual characters of string.
+
+#include <stdio.h>
+#include <string.h>
+ 
+int main() {
+   char s[100];
+   int c, l;
+ 
+   gets(s);
+ 
+   l = strlen(s);
+ 
+   for (c = 0; c < l; c++)
+      printf("%c", s[c]);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+String length
+
+This program prints length of string, for example consider the string "c programming" it's length is 13. Null character is not counted when calculating string length. To find string length we use strlen function of string.h.
+
+C program to find string length
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char a[100];
+   int length;
+ 
+   printf("Enter a string to calculate it's length\n");
+   gets(a);
+ 
+   length = strlen(a);
+ 
+   printf("Length of entered string is = %d\n",length);
+ 
+   return 0;
+}
+
+Output of program:
+String length program
+C program to find string length without strlen
+You can also find string length without strlen function. We create our own function to find string length.
+
+#include <stdio.h>
+ 
+int string_length(char []);
+ 
+int main()
+{
+   char s[1000];
+   int length;
+ 
+   printf("Input a string\n");
+   gets(s);
+ 
+   length = string_length(s);
+ 
+   printf("Length of \"%s\" = %d\n", s, length);
+ 
+   return 0;
+}
+ 
+int string_length(char s[]) {
+   int c = 0;
+ 
+   while (s[c] != '\0')
+      c++;
+ 
+   return c;
+}
+Function to find string length using pointers
+int string_length(char *s) {
+   int c = 0;
+ 
+   while(*(s+c))
+      c++;
+ 
+   return c;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+#include <stdio.h>
+ 
+int compare_strings(char [], char []); 
+ 
+int main()
+{
+   int flag;
+   char a[1000], b[1000];
+ 
+   printf("Input first string\n");
+   gets(a);
+ 
+   printf("Input second string\n");
+   gets(b);
+ 
+   flag = compare_strings(a, b);
+ 
+   if (flag == 0)
+      printf("Entered strings are equal.\n");
+   else
+      printf("Entered strings are not equal.\n");
+ 
+   return 0;
+}
+ 
+int compare_strings(char a[], char b[])
+{
+   int c = 0;
+ 
+   while (a[c] == b[c]) {
+      if (a[c] == '\0' || b[c] == '\0')
+         break;
+      c++;
+   }
+ 
+   if (a[c] == '\0' && b[c] == '\0')
+      return 0;
+   else
+      return -1;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+String copying in c programming
+
+This program copy string using library function strcpy, to copy string without using strcpy see source code below in which we have made our own function to copy string.
+
+C program to copy a string
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char source[1000], destination[1000];
+ 
+   printf("Input a string\n");
+   gets(source);
+ 
+   strcpy(destination, source);
+ 
+   printf("Source string:      \"%s\"\n", source);
+   printf("Destination string: \"%s\"\n", destination);
+ 
+   return 0;
+}
+Output of program:
+C program to copy string output
+
+C program to copy string without using strcpy
+We create our own function to copy string and do not use the library function strcpy.
+
+#include <stdio.h>
+#include <string.h>
+ 
+void copy_string(char [], char []);
+ 
+int main() {
+   char s[1000], d[1000];
+ 
+   printf("Input a string\n");
+   gets(s);
+ 
+   copy_string(d, s);
+ 
+   printf("Source string:      \"%s\"\n", s);
+   printf("Destination string: \"%s\"\n", d);
+ 
+   return 0; 
+}
+ 
+void copy_string(char d[], char s[]) {
+   int c = 0;
+ 
+   while (s[c] != '\0') {
+      d[c] = s[c];
+      c++;
+   }
+   d[c] = '\0';
+}
+
+
+C program to copy a string using pointers
+Function to copy string using pointers.
+
+void copy_string(char *target, char *source) {
+   while (*source) {
+      *target = *source;
+      source++;
+      target++;
+   }
+   *target = '\0';
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to concatenate strings
+
+This program concatenates strings, for example if the first string is "c " and second string is "program" then on concatenating these two strings we get the string "c program". To concatenate two strings we use strcat function of string.h, to concatenate without using library function see another code below which uses pointers.
+
+C programming code
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char a[1000], b[1000];
+ 
+   printf("Enter the first string\n");
+   gets(a);
+ 
+   printf("Enter the second string\n");
+   gets(b);
+ 
+   strcat(a,b);
+ 
+   printf("String obtained on concatenation is %s\n",a);
+ 
+   return 0;
+}
+
+Output of program:
+String concatenation
+Concatenate strings without strcat function
+C program to concatenate strings without using library function strcat of string.h header file. We create our own function.
+
+#include <stdio.h>
+ 
+void concatenate(char [], char []); 
+ 
+int main()
+{
+   char p[100], q[100];
+ 
+   printf("Input a string\n");
+   gets(p);
+ 
+   printf("Input a string to concatenate\n");
+   gets(q);
+ 
+   concatenate(p, q); 
+ 
+   printf("String obtained on concatenation is \"%s\"\n", p);
+ 
+   return 0;
+}
+ 
+void concatenate(char p[], char q[]) {
+   int c, d;
+ 
+   c = 0;
+ 
+   while (p[c] != '\0') {
+      c++;  	
+   }
+ 
+   d = 0;
+ 
+   while (q[d] != '\0') {
+      p[c] = q[d];
+      d++;
+      c++;	
+   }
+ 
+   p[c] = '\0';
+}
+The first for loop in concatenate function is calculating string length so you can also use strlen function if you wish.
+
+String concatenation using pointers
+#include <stdio.h>
+ 
+void concatenate_string(char*, char*);
+ 
+int main()
+{
+    char original[100], add[100];
+ 
+    printf("Enter source string\n");
+    gets(original);
+ 
+    printf("Enter string to concatenate\n");
+    gets(add);
+ 
+    concatenate_string(original, add);
+ 
+    printf("String after concatenation is \"%s\"\n", original);
+ 
+    return 0;
+}
+ 
+void concatenate_string(char *original, char *add)
+{
+   while(*original)
+      original++;
+ 
+   while(*add)
+   {
+      *original = *add;
+      add++;
+      original++;
+   }
+   *original = '\0';
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Reverse string
+
+This program reverses a string entered by the user. For example if a user enters a string "reverse me" then on reversing the string will be "em esrever". We show you four different methods to reverse string the first one uses strrev library function of string.h header file, second without using strrev and in third we make our own function to reverse string using pointers, reverse string using recursion and Reverse words in string. If you are using first method then you must include string.h in your program.
+
+C programming code
+/* String reverse in c*/
+
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char arr[100];
+ 
+   printf("Enter a string to reverse\n");
+   gets(arr);
+ 
+   strrev(arr);
+ 
+   printf("Reverse of entered string is \n%s\n",arr);
+ 
+   return 0;
+}
+
+Output of program:
+reverse string
+C program to reverse string without using function
+Below code does not uses strrev library function to reverse a string. First we calculate the length of string using strlen function and then assigns characters of input string in reverse order to create a new string using a for loop. You can also calculate length of string without using strlen. We use comma operator in for loop to initialize multiple variables and increment/decrement variables.
+
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char s[100], r[100];
+   int n, c, d;
+ 
+   printf("Input a string\n");
+   gets(s);
+ 
+   n = strlen(s);
+ 
+   for (c = n - 1, d = 0; c >= 0; c--, d++)
+      r[d] = s[c];
+ 
+   r[d] = '\0';
+ 
+   printf("%s\n", r);
+ 
+   return 0;
+}
+C program to reverse a string using pointers
+Now we will invert string using pointers or without using library function strrev.
+
+#include<stdio.h>
+ 
+int string_length(char*);
+void reverse(char*);
+ 
+main() 
+{
+   char string[100];
+ 
+   printf("Enter a string\n");
+   gets(string);
+ 
+   reverse(string);
+ 
+   printf("Reverse of entered string is \"%s\".\n", string);
+ 
+   return 0;
+}
+ 
+void reverse(char *string) 
+{
+   int length, c;
+   char *begin, *end, temp;
+ 
+   length = string_length(string);
+   begin  = string;
+   end    = string;
+ 
+   for (c = 0; c < length - 1; c++)
+      end++;
+ 
+   for (c = 0; c < length/2; c++)
+   {        
+      temp   = *end;
+      *end   = *begin;
+      *begin = temp;
+ 
+      begin++;
+      end--;
+   }
+}
+ 
+int string_length(char *pointer)
+{
+   int c = 0;
+ 
+   while( *(pointer + c) != '\0' )
+      c++;
+ 
+   return c;
+}
+C program to reverse a string using recursion
+#include <stdio.h>
+#include <string.h>
+ 
+void reverse(char*, int, int);
+ 
+int main()
+{
+   char a[100];
+ 
+   gets(a);
+ 
+   reverse(a, 0, strlen(a)-1);
+ 
+   printf("%s\n",a);
+ 
+   return 0;
+}
+ 
+void reverse(char *x, int begin, int end)
+{
+   char c;
+ 
+   if (begin >= end)
+      return;
+ 
+   c          = *(x+begin);
+   *(x+begin) = *(x+end);
+   *(x+end)   = c;
+ 
+   reverse(x, ++begin, --end);
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C palindrome program, c program for palindrome
+
+C program for palindrome or palindrome in c programming: palindrome program in c language, c code to check if a string is a palindrome or not and for palindrome number. This program works as follows :- at first we copy the entered string into a new string, and then we reverse the new string and then compares it with original string. If both of them have same sequence of characters i.e. they are identical then the entered string is a palindrome otherwise not. To perform copy, reverse and compare operations we use strcpy, strrev and strcmp functions of string.h respectively, if you do not wish to use these functions see c programming code for palindrome without using string functions. Some palindrome strings examples are "a", dad", "radar", "madam", "abcba" etc.
+
+C program for palindrome
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char a[100], b[100];
+ 
+   printf("Enter the string to check if it is a palindrome\n");
+   gets(a);
+ 
+   strcpy(b,a);
+   strrev(b);
+ 
+   if (strcmp(a,b) == 0)
+      printf("Entered string is a palindrome.\n");
+   else
+      printf("Entered string is not a palindrome.\n");
+ 
+   return 0;
+}
+
+Output of program:
+palindrome
+Palindrome number in c
+#include <stdio.h>
+ 
+main()
+{
+   int n, reverse = 0, temp;
+ 
+   printf("Enter a number to check if it is a palindrome or not\n");
+   scanf("%d",&n);
+ 
+   temp = n;
+ 
+   while (temp != 0)
+   {
+      reverse = reverse * 10;
+      reverse = reverse + temp%10;
+      temp    = temp/10;
+   }
+ 
+   if (n == reverse)
+      printf("%d is a palindrome number.\n", n);
+   else
+      printf("%d is not a palindrome number.\n", n);
+ 
+   return 0;
+}
+C program for palindrome without using string functions
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char text[100];
+   int begin, middle, end, length = 0;
+ 
+   gets(text);
+ 
+   while (text[length] != '\0')
+      length++;
+ 
+   end = length - 1;
+   middle = length/2;
+ 
+   for (begin = 0; begin < middle; begin++)
+   {
+      if (text[begin] != text[end])
+      {
+         printf("Not a palindrome.\n");
+         break;
+      }
+      end--;
+   }
+   if (begin == middle)
+      printf("Palindrome.\n");
+ 
+   return 0;
+}
+C program check palindrome
+#include <stdio.h>
+ 
+int is_palindrome(char*);
+void copy_string(char*, char*);
+void reverse_string(char*);
+int string_length(char*);
+int compare_string(char*, char*);
+ 
+int main()
+{
+   char string[100];
+   int result;
+ 
+   printf("Input a string\n");
+   gets(string);
+ 
+   result = is_palindrome(string);
+ 
+   if ( result == 1 )
+      printf("\"%s\" is a palindrome string.\n", string);
+   else
+      printf("\"%s\" is not a palindrome string.\n", string); 
+ 
+   return 0;
+}
+ 
+int is_palindrome(char *string)
+{
+   int check, length;
+   char *reverse;
+ 
+   length = string_length(string);    
+   reverse = (char*)malloc(length+1);    
+ 
+   copy_string(reverse, string);
+   reverse_string(reverse);
+ 
+   check = compare_string(string, reverse);
+ 
+   free(reverse);
+ 
+   if ( check == 0 )
+      return 1;
+   else
+      return 0;
+}
+ 
+int string_length(char *string)
+{
+   int length = 0;  
+ 
+   while(*string)
+   {
+      length++;
+      string++;
+   }
+ 
+   return length;
+}
+ 
+void copy_string(char *target, char *source)
+{
+   while(*source)
+   {
+      *target = *source;
+      source++;
+      target++;
+   }
+   *target = '\0';
+}
+ 
+void reverse_string(char *string) 
+{
+   int length, c;
+   char *begin, *end, temp;
+ 
+   length = string_length(string);
+ 
+   begin = string;
+   end = string;
+ 
+   for ( c = 0 ; c < ( length - 1 ) ; c++ )
+       end++;
+ 
+   for ( c = 0 ; c < length/2 ; c++ ) 
+   {        
+      temp = *end;
+      *end = *begin;
+      *begin = temp;
+ 
+      begin++;
+      end--;
+   }
+}
+ 
+int compare_string(char *first, char *second)
+{
+   while(*first==*second)
+   {
+      if ( *first == '\0' || *second == '\0' )
+         break;
+ 
+      first++;
+      second++;
+   }
+   if( *first == '\0' && *second == '\0' )
+      return 0;
+   else
+      return -1;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to convert string to integer without using atoi function
+
+C program to convert string to integer: It is frequently required to convert a string to an integer in applications. String should consists of digits only and an optional '-' (minus) sign at beginning for integers. For string containing other characters we can stop conversion as soon as a non digit character is encountered but in our program we will handle ideal case when only valid characters are present in string. Library function atoi can be used to convert string to an integer but we will create our own function.
+
+C programming code
+// C program to convert string to integer without using atoi function
+#include <stdio.h>
+ 
+int toString(char []);
+ 
+int main()
+{
+  char a[100];
+  int n;
+ 
+  printf("Input a valid string to convert to integer\n");
+  scanf("%s", a);
+ 
+  n = toString(a);
+ 
+  printf("String  = %s\nInteger = %d\n", a, n);
+ 
+  return 0;
+}
+ 
+int toString(char a[]) {
+  int c, sign, offset, n;
+ 
+  if (a[0] == '-') {  // Handle negative integers
+    sign = -1;
+  }
+ 
+  if (sign == -1) {  // Set starting position to convert
+    offset = 1;
+  }
+  else {
+    offset = 0;
+  }
+ 
+  n = 0;
+ 
+  for (c = offset; a[c] != '\0'; c++) {
+    n = n * 10 + a[c] - '0';
+  }
+ 
+  if (sign == -1) {
+    n = -n;
+  }
+ 
+  return n;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to delete vowels from a string
+
+Remove vowels from a string in c: c program to remove or delete vowels from a string, if the input string is "c programming" then output will be "c prgrmmng". In the program we create a new string and process entered string character by character, and if a vowel is found it is not added to new string otherwise the character is added to new string, after the string ends we copy the new string into original string. Finally we obtain a string without any vowels.
+
+C programming code
+#include <stdio.h>
+#include <string.h>
+ 
+int check_vowel(char);
+ 
+int main()
+{
+  char s[100], t[100];
+  int i, j = 0;
+ 
+  printf("Enter a string to delete vowels\n");
+  gets(s);
+ 
+  for(i = 0; s[i] != '\0'; i++) {
+    if(check_vowel(s[i]) == 0) {       //not a vowel
+      t[j] = s[i];
+      j++;
+    }
+  }
+ 
+  t[j] = '\0';
+ 
+  strcpy(s, t);    //We are changing initial string
+ 
+  printf("String after deleting vowels: %s\n", s);
+ 
+  return 0;
+}
+ 
+ 
+int check_vowel(char c)
+{
+  switch(c) {
+    case 'a':
+    case 'A':
+    case 'e':
+    case 'E':
+    case 'i':
+    case 'I':
+    case 'o':
+    case 'O':
+    case 'u':
+    case 'U':
+      return 1;
+    default:
+      return 0;
+  }
+}
+Output of program:
+C program to delete vowels from a string output
+C programming code using pointers
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define TRUE 1
+#define FALSE 0
+ 
+int check_vowel(char);
+ 
+main()
+{
+   char string[100], *temp, *pointer, ch, *start;
+ 
+   printf("Enter a string\n");
+   gets(string);
+ 
+   temp = string;
+   pointer = (char*)malloc(100);
+ 
+  if( pointer == NULL )
+   {
+      printf("Unable to allocate memory.\n");
+      exit(EXIT_FAILURE);
+   }
+ 
+   start = pointer;
+ 
+   while(*temp)
+   {
+      ch = *temp;
+ 
+      if ( !check_vowel(ch) )
+      {
+         *pointer = ch;
+         pointer++;
+      }
+      temp++;
+   }
+   *pointer = '\0';
+ 
+   pointer = start;
+   strcpy(string, pointer); /* If you wish to convert original string */
+   free(pointer);
+ 
+   printf("String after removing vowel is \"%s\"\n", string);
+ 
+   return 0;
+}
+ 
+int check_vowel(char a)
+{
+   if ( a >= 'A' && a <= 'Z' )
+      a = a + 'a' - 'A';
+ 
+   if ( a == 'a' || a == 'e' || a == 'i' || a == 'o' || a == 'u')
+      return TRUE;
+ 
+   return FALSE;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Substring in c programming, c substring
+
+Substring in c programming: c programming code to find a substring from a given string and for all substrings of a string, For example substrings of string "the" are "t", "th", "the", "h", "he" and "e" to find substring we create our own c substring function which returns a pointer to string. String address, length of substring required and position from where to extract substring are the three arguments passed to function. String.h does not contain any library function to directly find substring.
+
+C substring code
+#include <stdio.h>
+ 
+int main() 
+{
+   char string[1000], sub[1000];
+   int position, length, c = 0;
+ 
+   printf("Input a string\n");
+   gets(string);
+ 
+   printf("Enter the position and length of substring\n");
+   scanf("%d%d", &position, &length);
+ 
+   while (c < length) {
+      sub[c] = string[position+c-1];
+      c++;
+   }
+   sub[c] = '\0';
+ 
+   printf("Required substring is \"%s\"\n", sub);
+ 
+   return 0;
+}
+C substring program output:
+Substring program output
+C substring program using function
+We create a function and pass it four arguments original string array, substring array, position and length of desired substring. As call by reference is used we do not need to return substring array. See another code below in which we return pointer to substring, which we create in our array using dynamic memory allocation.
+
+#include <stdio.h>
+ 
+void substring(char [], char[], int, int);
+ 
+int main() 
+{
+   char string[1000], sub[1000];
+   int position, length, c = 0;
+ 
+   printf("Input a string\n");
+   gets(string);
+ 
+   printf("Enter the position and length of substring\n");
+   scanf("%d%d", &position, &length);
+ 
+   substring(string, sub, position, length);
+ 
+   printf("Required substring is \"%s\"\n", sub);
+ 
+   return 0;
+}
+ 
+void substring(char s[], char sub[], int p, int l) {
+   int c = 0;
+ 
+   while (c < l) {
+      sub[c] = s[p+c-1];
+      c++;
+   }
+   sub[c] = '\0';
+}
+C substring program using pointers
+#include <stdio.h>
+#include <stdlib.h>
+ 
+char* substring(char*, int, int);
+ 
+int main() 
+{
+   char string[100], *pointer;
+   int position, length;
+ 
+   printf("Input a string\n");
+   gets(string);
+ 
+   printf("Enter the position and length of substring\n");
+   scanf("%d%d",&position, &length);
+ 
+   pointer = substring( string, position, length);
+ 
+   printf("Required substring is \"%s\"\n", pointer);
+ 
+   free(pointer);
+ 
+   return 0;
+}
+ 
+/*C substring function: It returns a pointer to the substring */
+ 
+char *substring(char *string, int position, int length) 
+{
+   char *pointer;
+   int c;
+ 
+   pointer = malloc(length+1);
+ 
+   if (pointer == NULL)
+   {
+      printf("Unable to allocate memory.\n");
+      exit(1);
+   }
+ 
+   for (c = 0 ; c < length ; c++)
+   {
+      *(pointer+c) = *(string+position-1);      
+      string++;   
+   }
+ 
+   *(pointer+c) = '\0';
+ 
+   return pointer;
+}
+C code for all substrings of a string
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+ 
+char* substring(char*, int, int);
+ 
+int main() 
+{
+   char string[100], *pointer;
+   int position = 1, length = 1, temp, string_length;
+ 
+   printf("Enter a string\n");
+   gets(string);
+ 
+   temp = string_length = strlen(string);
+ 
+   printf("Substring of \"%s\" are\n", string);
+ 
+   while (position <= string_length)
+   {
+      while (length <= temp)
+      {
+         pointer = substring(string, position, length);
+         printf("%s\n", pointer);
+         free(pointer);
+         length++;
+      }
+      temp--;
+      position++;
+      length = 1;
+   }
+ 
+   return 0;
+}
+ 
+/* Use substring function given in above c program*/ 
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to check subsequence
+
+C program to check Subsequence, don't confuse subsequence with substring. In our program we check if a string is a subsequence of another string. User will input two strings and we find if one of the strings is a subsequence of other. Program prints yes if either first string is a subsequence of second or second is a subsequence of first. We pass smaller length string first because our function assumes first string is of smaller or equal length than the second string.
+
+C programming code
+#include <stdio.h>
+#include <string.h>
+ 
+int check_subsequence (char [], char[]);
+ 
+int main () {
+   int flag;
+   char s1[1000], s2[1000];
+ 
+   printf("Input first string\n");
+   gets(s1);
+ 
+   printf("Input second string\n");
+   gets(s2);
+ 
+   /** Passing smaller length string first */
+ 
+   if (strlen(s1) < strlen(s2))
+      flag = check_subsequence(s1, s2);
+   else
+      flag = check_subsequence(s2, s1);
+ 
+   if (flag)
+      printf("YES\n");
+   else
+      printf("NO\n");
+ 
+   return 0;
+}
+ 
+int check_subsequence (char a[], char b[]) {
+   int c, d;
+ 
+   c = d = 0;
+ 
+   while (a[c] != '\0') {
+      while ((a[c] != b[d]) && b[d] != '\0') {
+         d++;
+      }
+      if (b[d] == '\0')
+         break;
+      d++;
+      c++;
+   }
+   if (a[c] == '\0')
+      return 1;
+   else
+      return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to sort a string in alphabetic order
+
+C program to sort a string in alphabetic order: For example if user will enter a string "programming" then output will be "aggimmnoprr" or output string will contain characters in alphabetical order. In our program we assume input string contains only lower case alphabets. First we count and store how many times characters 'a' to 'z' appear in input string and then create another string which contains characters 'a' to 'z' as many times as they appear in the input string.
+
+C programming code
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int main()
+{
+   char ch, input[100], output[100];
+   int no[26] = {0}, n, c, t, x;
+ 
+   printf("Enter some text\n");
+   scanf("%s", input);
+ 
+   n = strlen(input);
+ 
+   /** Store how many times characters (a to z) 
+      appears in input string in array */
+ 
+   for (c = 0; c < n; c++)
+   {
+      ch = input[c] - 'a';
+      no[ch]++;
+   }
+ 
+   t = 0;
+ 
+   /** Insert characters a to z in output string 
+       that many number of times as they appear 
+       in input string */
+ 
+   for (ch = 'a'; ch <= 'z'; ch++)
+   {
+      x = ch - 'a';
+ 
+      for (c = 0; c < no[x]; c++)
+      {
+         output[t] = ch;
+         t++;
+      }
+   }
+   output[t] = '\0';
+ 
+   printf("%s\n", output);
+ 
+   return 0;
+}
+Output of program:
+Sort string program
+C program using pointers
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+void sort_string(char*);
+ 
+int main()
+{
+   char string[100];
+ 
+   printf("Enter some text\n");
+   gets(string);
+ 
+   sort_string(string);
+   printf("%s\n", string);
+ 
+   return 0;
+}
+ 
+void sort_string(char *s)
+{
+   int c, d = 0, length;
+   char *pointer, *result, ch;
+ 
+   length = strlen(s);
+ 
+   result = (char*)malloc(length+1);
+ 
+   pointer = s;
+ 
+   for ( ch = 'a' ; ch <= 'z' ; ch++ )
+   {
+      for ( c = 0 ; c < length ; c++ )
+      {
+         if ( *pointer == ch )
+         {
+            *(result+d) = *pointer;
+            d++;
+         }
+         pointer++;
+      }
+      pointer = s;
+   }
+   *(result+d) = '\0';
+ 
+   strcpy(s, result);
+   free(result);
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program remove spaces, blanks from a string
+
+C code to remove spaces or excess blanks from a string, For example consider the string
+
+"c  programming"
+There are two spaces in this string, so our program will print a string
+"c programming". It will remove spaces when they occur more than one time consecutively in string anywhere.
+
+C programming code
+#include <stdio.h>
+ 
+int main()
+{
+   char text[1000], blank[1000];
+   int c = 0, d = 0;
+ 
+   printf("Enter some text\n");
+   gets(text);
+ 
+   while (text[c] != '\0') {
+      if (text[c] == ' ') {
+         int temp = c + 1;
+         if (text[temp] != '\0') {
+            while (text[temp] == ' ' && text[temp] != '\0') {
+               if (text[temp] == ' ') {
+                  c++;
+               }  
+               temp++;
+            }
+         }
+      }
+      blank[d] = text[c];
+      c++;
+      d++;
+   }
+ 
+   blank[d] = '\0';
+ 
+   printf("Text after removing blanks\n%s\n", blank);
+ 
+   return 0;
+}
+If you want you can copy blank into text string so that original string is modified.
+
+Output of program:
+Remove spaces c program
+C programming code using pointers
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define SPACE ' '
+ 
+char *process(char*);
+ 
+int main()
+{
+   char text[1000], *r;
+ 
+   printf("Enter a string\n");
+   gets(text);
+ 
+   r = process(text);
+ 
+   printf("\"%s\"\n", r);
+ 
+   free(r);     
+ 
+   return 0;
+}
+ 
+char *process(char *text) {
+   int length, c, d;
+   char *start;
+ 
+   c = d = 0;
+ 
+   length = strlen(text);
+ 
+   start = (char*)malloc(length+1);
+ 
+   if (start == NULL)
+      exit(EXIT_FAILURE);
+ 
+   while (*(text+c) != '\0') {
+      if (*(text+c) == ' ') {
+         int temp = c + 1;
+         if (*(text+temp) != '\0') {
+            while (*(text+temp) == ' ' && *(text+temp) != '\0') {
+               if (*(text+temp) == ' ') {
+                  c++;
+               }  
+               temp++;
+            }
+         }
+      }
+      *(start+d) = *(text+c);
+      c++;
+      d++;
+   }
+   *(start+d)= '\0';
+ 
+   return start;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to change case of a string
+
+Strlwr function convert a string to lower case and strupr function convert a string to upper case.Here we will change string case with and without strlwr, strupr functions. These functions convert case of alphabets and ignore other characters which may be present in a string.
+
+strlwr in c
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char string[1000];
+ 
+   printf("Input a string to convert to lower case\n");
+   gets(string);
+ 
+   printf("Input string in lower case: \"%s\"\n",strlwr(string));
+ 
+   return  0;
+}
+strupr in c
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char string[1000];
+ 
+   printf("Input a string to convert to upper case\n");
+   gets(string);
+ 
+   printf("Input string in upper case: \"%s\"\n",strupr(string));
+ 
+   return  0;
+}
+Change string to upper case without strupr
+#include <stdio.h>
+ 
+void upper_string(char []);
+ 
+int main()
+{
+   char string[100];
+ 
+   printf("Enter a string to convert it into upper case\n");
+   gets(string);
+ 
+   upper_string(string);
+ 
+   printf("Entered string in upper case is \"%s\"\n", string);
+ 
+   return 0;
+}
+ 
+void upper_string(char s[]) {
+   int c = 0;
+ 
+   while (s[c] != '\0') {
+      if (s[c] >= 'a' && s[c] <= 'z') {
+         s[c] = s[c] - 32;
+      }
+      c++;
+   }
+}
+Change string to lower case without strlwr
+#include <stdio.h>
+ 
+void lower_string(char []);
+ 
+int main()
+{
+   char string[100];
+ 
+   printf("Enter a string to convert it into lower case\n");
+   gets(string);
+ 
+   lower_string(string);
+ 
+   printf("Entered string in lower case is \"%s\"\n", string);
+ 
+   return 0;
+}
+ 
+void lower_string(char s[]) {
+   int c = 0;
+ 
+   while (s[c] != '\0') {
+      if (s[c] >= 'A' && s[c] <= 'Z') {
+         s[c] = s[c] + 32;
+      }
+      c++;
+   }
+}
+You can also implement functions using pointers.
+
+C program to change case from upper to lower and lower to upper
+Below program change case of alphabets if a lower case alphabet is found it is converted to upper and if an upper case is found it is converted to lower case.
+
+#include <stdio.h>
+ 
+int main () 
+{
+   int c = 0;
+   char ch, s[1000];
+ 
+   printf("Input a string\n");
+   gets(s);
+ 
+   while (s[c] != '\0') {
+      ch = s[c];
+      if (ch >= 'A' && ch <= 'Z')
+         s[c] = s[c] + 32;
+      else if (ch >= 'a' && ch <= 'z')
+         s[c] = s[c] - 32;   
+      c++;   
+   }
+ 
+   printf("%s\n", s);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to swap two strings
+
+C program to swap strings i.e. contents of two strings are interchanged.
+
+C programming code
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+ 
+int main()
+{
+   char first[100], second[100], *temp;
+ 
+   printf("Enter the first string\n");
+   gets(first);
+ 
+   printf("Enter the second string\n");
+   gets(second);
+ 
+   printf("\nBefore Swapping\n");
+   printf("First string: %s\n",first);
+   printf("Second string: %s\n\n",second);
+ 
+   temp = (char*)malloc(100);
+ 
+   strcpy(temp,first);
+   strcpy(first,second);
+   strcpy(second,temp);
+ 
+   printf("After Swapping\n");
+   printf("First string: %s\n",first);
+   printf("Second string: %s\n",second);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to find frequency of characters in a string
+
+This program computes frequency of characters in a string i.e. which character is present how many times in a string. For example in the string "code" each of the character 'c', 'o', 'd', and 'e' has occurred one time. Only lower case alphabets are considered, other characters (uppercase and special characters) are ignored. You can easily modify this program to handle uppercase and special symbols.
+
+C programming code
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+   char string[100];
+   int c = 0, count[26] = {0};
+ 
+   printf("Enter a string\n");
+   gets(string);
+ 
+   while (string[c] != '\0')
+   {
+      /** Considering characters from 'a' to 'z' only
+          and ignoring others */
+ 
+      if (string[c] >= 'a' && string[c] <= 'z') 
+         count[string[c]-'a']++;
+ 
+      c++;
+   }
+ 
+   for (c = 0; c < 26; c++)
+   {
+      /** Printing only those characters 
+          whose count is at least 1 */
+ 
+      if (count[c] != 0)
+         printf("%c occurs %d times in the entered string.\n",c+'a',count[c]);
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Anagram in c
+
+Anagram in c: c program to check whether two strings are anagrams or not, string is assumed to consist of alphabets only. Two words are said to be anagrams of each other if the letters from one word can be rearranged to form the other word. From the above definition it is clear that two strings are anagrams if all characters in both strings occur same number of times. For example "abc" and "cab" are anagram strings, here every character 'a', 'b' and 'c' occur only one time in both strings. Our algorithm tries to find how many times characters appear in the strings and then comparing their corresponding counts.
+
+C anagram programming code
+#include <stdio.h>
+ 
+int check_anagram(char [], char []);
+ 
+int main()
+{
+   char a[100], b[100];
+   int flag;
+ 
+   printf("Enter first string\n");
+   gets(a);
+ 
+   printf("Enter second string\n");
+   gets(b);
+ 
+   flag = check_anagram(a, b);
+ 
+   if (flag == 1)
+      printf("\"%s\" and \"%s\" are anagrams.\n", a, b);
+   else
+      printf("\"%s\" and \"%s\" are not anagrams.\n", a, b);
+ 
+   return 0;
+}
+ 
+int check_anagram(char a[], char b[])
+{
+   int first[26] = {0}, second[26] = {0}, c = 0;
+ 
+   while (a[c] != '\0')
+   {
+      first[a[c]-'a']++;
+      c++;
+   }
+ 
+   c = 0;
+ 
+   while (b[c] != '\0')
+   {
+      second[b[c]-'a']++;
+      c++;
+   }
+ 
+   for (c = 0; c < 26; c++)
+   {
+      if (first[c] != second[c])
+         return 0;
+   }
+ 
+   return 1;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to read a file
+
+C program to read a file: This program reads a file entered by the user and displays its contents on the screen, fopen function is used to open a file it returns a pointer to structure FILE. FILE is a predefined structure in stdio.h . If the file is successfully opened then fopen returns a pointer to file and if it is unable to open a file then it returns NULL. fgetc function returns a character which is read from the file and fclose function closes the file. Opening a file means we bring file from disk to ram to perform operations on it. The file must be present in the directory in which the executable file of this code sis present.
+
+C program to open a file
+C programming code to open a file and to print it contents on screen.
+
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+   char ch, file_name[25];
+   FILE *fp;
+ 
+   printf("Enter the name of file you wish to see\n");
+   gets(file_name);
+ 
+   fp = fopen(file_name,"r"); // read mode
+ 
+   if( fp == NULL )
+   {
+      perror("Error while opening the file.\n");
+      exit(EXIT_FAILURE);
+   }
+ 
+   printf("The contents of %s file are :\n", file_name);
+ 
+   while( ( ch = fgetc(fp) ) != EOF )
+      printf("%c",ch);
+ 
+   fclose(fp);
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to copy files
+
+C program to copy files: This program copies a file, firstly you will specify the file to copy and then you will enter the name of target file, You will have to mention the extension of file also. We will open the file that we wish to copy in read mode and target file in write mode.
+
+C programming code
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+   char ch, source_file[20], target_file[20];
+   FILE *source, *target;
+ 
+   printf("Enter name of file to copy\n");
+   gets(source_file);
+ 
+   source = fopen(source_file, "r");
+ 
+   if( source == NULL )
+   {
+      printf("Press any key to exit...\n");
+      exit(EXIT_FAILURE);
+   }
+ 
+   printf("Enter name of target file\n");
+   gets(target_file);
+ 
+   target = fopen(target_file, "w");
+ 
+   if( target == NULL )
+   {
+      fclose(source);
+      printf("Press any key to exit...\n");
+      exit(EXIT_FAILURE);
+   }
+ 
+   while( ( ch = fgetc(source) ) != EOF )
+      fputc(ch, target);
+ 
+   printf("File copied successfully.\n");
+ 
+   fclose(source);
+   fclose(target);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to merge two files
+
+This c program merges two files and stores their contents in another file. The files which are to be merged are opened in read mode and the file which contains content of both the files is opened in write mode. To merge two files first we open a file and read it character by character and store the read contents in another file then we read the contents of another file and store it in file, we read two files until EOF (end of file) is reached.
+
+C programming code
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+   FILE *fs1, *fs2, *ft;
+ 
+   char ch, file1[20], file2[20], file3[20];
+ 
+   printf("Enter name of first file\n");
+   gets(file1);
+ 
+   printf("Enter name of second file\n");
+   gets(file2);
+ 
+   printf("Enter name of file which will store contents of two files\n");
+   gets(file3);
+ 
+   fs1 = fopen(file1,"r");
+   fs2 = fopen(file2,"r");
+ 
+   if( fs1 == NULL || fs2 == NULL )
+   {
+      perror("Error ");
+      printf("Press any key to exit...\n");
+      getch();
+      exit(EXIT_FAILURE);
+   }
+ 
+   ft = fopen(file3,"w");
+ 
+   if( ft == NULL )
+   {
+      perror("Error ");
+      printf("Press any key to exit...\n");
+      exit(EXIT_FAILURE);
+   }
+ 
+   while( ( ch = fgetc(fs1) ) != EOF )
+      fputc(ch,ft);
+ 
+   while( ( ch = fgetc(fs2) ) != EOF )
+      fputc(ch,ft);
+ 
+   printf("Two files were merged into %s file successfully.\n",file3);
+ 
+   fclose(fs1);
+   fclose(fs2);
+   fclose(ft);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to list files in directory
+
+This program list all files present in a directory/folder in which this executable file is present. For example if this executable file is present in C:\\TC\\BIN then it will lists all the files present in C:\\TC\\BIN.
+
+C programming code(Turbo C compiler only)
+#include <stdio.h>
+#include <conio.h>
+#include <dir.h>
+ 
+int main()
+{
+   int done;
+   struct ffblk a;
+ 
+   printf("Press any key to view the files in the current directory\n");
+ 
+   getch();
+ 
+   done = findfirst("*.*",&a,0);
+ 
+   while(!done)
+   {
+      printf("%s\n",a.ff_name);
+      done = findnext(&a);
+   }
+ 
+   getch();
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to delete a file
+
+This c program deletes a file which is entered by the user, the file to be deleted should be present in the directory in which the executable file of this program is present. Extension of the file should also be entered, remove macro is used to delete the file. If there is an error in deleting the file then an error will be displayed using perror function.
+
+C programming code
+#include<stdio.h>
+ 
+main()
+{
+   int status;
+   char file_name[25];
+ 
+   printf("Enter the name of file you wish to delete\n");
+   gets(file_name);
+ 
+   status = remove(file_name);
+ 
+   if( status == 0 )
+      printf("%s file deleted successfully.\n",file_name);
+   else
+   {
+      printf("Unable to delete the file\n");
+      perror("Error");
+   }
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to generate random numbers
+
+This c program generates pseudo random numbers using rand and random function(Turbo C compiler only). As the random numbers are generated by an algorithm used in a function they are pseudo random, this is the reason why pseudo word is used. Function rand() returns a pseudo random number between 0 and RAND_MAX. RAND_MAX is a constant which is platform dependent and equals the maximum value returned by rand function.
+
+C programming code using rand
+We use modulus operator in our program. If you evaluate a % b where a and b are integers then result will always be less than b for any set of values of a and b. For example
+For a = 1243 and b = 100
+a % b = 1243 % 100 = 43
+For a = 99 and b = 100
+a % b = 99 % 100 = 99
+For a = 1000 and b = 100
+a % b = 1000 % 100 = 0
+
+In our program we print pseudo random numbers in range [0, 100]. So we calculate rand() % 100 which will return a number in [0, 99] so we add 1 to get the desired range.
+
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main() {
+  int c, n;
+ 
+  printf("Ten random numbers in [1,100]\n");
+ 
+  for (c = 1; c <= 10; c++) {
+    n = rand() % 100 + 1;
+    printf("%d\n", n);
+  }
+ 
+  return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to add two complex numbers
+
+C program to add two complex numbers: this program calculate the sum of two complex numbers which will be entered by the user and then prints it. User will have to enter the real and imaginary parts of two complex numbers. In our program we will add real parts and imaginary parts of complex numbers and prints the complex number, i is the symbol used for iota. For example if user entered two complex numbers as (1 + 2i) and (4 + 6 i) then output of program will be (5+8i). A structure is used to store complex number.
+
+C programming code
+#include <stdio.h>
+ 
+struct complex
+{
+   int real, img;
+};
+ 
+int main()
+{
+   struct complex a, b, c;
+ 
+   printf("Enter a and b where a + ib is the first complex number.\n");
+   printf("a = ");
+   scanf("%d", &a.real);
+   printf("b = ");
+   scanf("%d", &a.img);
+   printf("Enter c and d where c + id is the second complex number.\n");
+   printf("c = ");
+   scanf("%d", &b.real);
+   printf("d = ");
+   scanf("%d", &b.img);
+ 
+   c.real = a.real + b.real;
+   c.img = a.img + b.img;
+ 
+   if ( c.img >= 0 )
+      printf("Sum of two complex numbers = %d + %di\n", c.real, c.img);
+   else
+      printf("Sum of two complex numbers = %d %di\n", c.real, c.img);
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to print date
+
+This c program prints current system date. To print date we will use getdate function.
+
+C programming code (Works in Turbo C only)
+#include <stdio.h>
+#include <conio.h>
+#include <dos.h>
+ 
+int main()
+{
+   struct date d;
+ 
+   getdate(&d);
+ 
+   printf("Current system date is %d/%d/%d",d.da_day,d.da_mon,d.da_year);
+   getch();
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to get ip address
+
+This c program prints ip (internet protocol) address of your computer, system function is used to execute the command ipconfig which prints ip address, subnet mask and default gateway. The code given below works for Windows xp and Windows 7. If you are using turbo c compiler then execute program from folder, it may not work when you are working in compiler and press Ctrl+F9 to run your program.
+
+C programming code
+#include<stdlib.h>
+ 
+int main()
+{
+   system("C:\\Windows\\System32\\ipconfig");
+ 
+   return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+C program to shutdown or turn off computer
+
+C Program to shutdown your computer: This program turn off i.e shutdown your computer system. Firstly it will asks you to shutdown your computer if you press 'y' then your computer will shutdown in 30 seconds, system function of "stdlib.h" is used to run an executable file shutdown.exe which is present in C:\WINDOWS\system32 in Windows XP. You can use various options while executing shutdown.exe, you can use -t option to specify number of seconds after which shutdown occurs.
+Syntax: shutdown -s -t x; here x is the number of seconds after which shutdown will occur.
+
+By default shutdown occur after 30 seconds. To shutdown immediately you can write "shutdown -s -t 0". If you wish to restart your computer then you can write "shutdown -r".
+
+If you are using Turbo C Compiler then execute your program from command prompt or by opening the executable file from the folder. Press F9 to build your executable file from source program. When you run program from within the compiler by pressing Ctrl+F9 it may not work.
+C programming code for Windows XP
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+   char ch;
+ 
+   printf("Do you want to shutdown your computer now (y/n)\n");
+   scanf("%c", &ch);
+ 
+   if (ch == 'y' || ch == 'Y')
+      system("C:\\WINDOWS\\System32\\shutdown -s");
+ 
+   return 0;
+}
+C programming code for Windows 7
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+   system("C:\\WINDOWS\\System32\\shutdown /s");
+ 
+   return 0;
+}
+To shutdown immediately use "C:\\WINDOWS\\System32\\ shutdown /s /t 0". To restart use /r instead of /s.
+
+C programming code for Ubuntu Linux
+#include <stdio.h>
+ 
+int main() {
+  system("shutdown -P now");
+  return 0;
+} 
